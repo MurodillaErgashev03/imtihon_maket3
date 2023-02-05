@@ -404,3 +404,57 @@ var films = [
     genres: ["Music", "Documentary"],
   },
 ];
+
+let elFilm = document.querySelector(".films-box");
+let elSearch = document.querySelector("#input-id");
+let elSelect = document.querySelector(".select-box");
+
+function renderFilms(kino) {
+  elFilm.textContent = "";
+
+  for (let i = 0; i < kino.length; i++) {
+    let li = document.createElement("li");
+
+    let date = new Date(kino[i].release_date);
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (hour < 10) {
+      hour = "0" + hour;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    let fulldate = `${day}.${month}.${year} / ${hour}:${minutes}`;
+
+    li.innerHTML = `
+    <li class="item-list">
+    <div class="box">
+    <img class="img" src=${kino[i].poster}  alt="">
+    <div class="bottom-box">
+    
+    <h5 class="item-text">Nomi : ${kino[i].title}</h5>
+    
+    <p class="genres-text"> <span class="span-text">Janri</span> : ${kino[i].genres}</p>
+    <p class="date-text"> <span class="span-text">Sanasi</span> : ${fulldate}</p>
+    <button data-id=${kino[i].id} id"0"  class="delete-btn">Delete</button>
+    </div>
+    
+    </div>
+    </li>`;
+
+    elFilm.appendChild(li);
+  }
+}
+
+renderFilms(films);
