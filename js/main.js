@@ -480,3 +480,17 @@ elFilm.addEventListener("click", function (evt) {
     renderFilms(films);
   }
 });
+
+//search
+
+elSearch.addEventListener("input", () => {
+  let value = elSearch.value;
+  let searchArr = [];
+
+  films.forEach((search) => {
+    if (search.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {
+      searchArr.push(search);
+    }
+  });
+  renderFilms(searchArr);
+});
