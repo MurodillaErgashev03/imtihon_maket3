@@ -458,3 +458,25 @@ function renderFilms(kino) {
 }
 
 renderFilms(films);
+
+//delete
+
+elFilm.addEventListener("click", function (evt) {
+  const element = evt.target;
+  if (element.className.includes("delete-btn")) {
+    const id = Number(element.dataset.id);
+    let result = [];
+
+    for (let i = 0; i < films.length; i++) {
+      const kino = films[i];
+
+      let idd = Number(kino.id);
+
+      if (idd !== id) {
+        result.push(kino);
+      }
+    }
+    films = result;
+    renderFilms(films);
+  }
+});
