@@ -494,3 +494,21 @@ elSearch.addEventListener("input", () => {
   });
   renderFilms(searchArr);
 });
+
+//select
+
+elSelect.addEventListener("change", () => {
+  let value = elSelect.value;
+  let all = [];
+  let genres = [];
+
+  films.forEach((janr) => {
+    if (janr.genres.includes(value)) {
+      genres.push(janr);
+      renderFilms(genres);
+    } else if (value == "All") {
+      all.push(janr);
+      renderFilms(all);
+    }
+  });
+});
